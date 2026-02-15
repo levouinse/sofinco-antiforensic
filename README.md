@@ -609,7 +609,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 - **GitHub:** https://github.com/levouinse/sofinco-antiforensic
 - **Issues:** https://github.com/levouinse/sofinco-antiforensic/issues
 - **Discussions:** https://github.com/levouinse/sofinco-antiforensic/discussions
-- **Security:** See [SECURITY.md](SECURITY.md)
 
 ---
 
