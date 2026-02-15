@@ -1,5 +1,5 @@
 // Data Sources - Comprehensive forensic artifact locations
-// Sumber data lengkap untuk cleanup
+// Complete list of forensic artifacts for cleanup operations
 
 #![allow(dead_code)]
 

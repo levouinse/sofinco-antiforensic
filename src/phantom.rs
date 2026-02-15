@@ -1,5 +1,5 @@
-// SOFINCO v7.0.0 "ULTIMATE COMPLETE" - Implementation
-// Implementasi LENGKAP semua fitur anti-forensik
+// SOFINCO Anti-Forensic Toolkit v7.0
+// Core implementation of anti-forensic features
 
 use std::path::{Path, PathBuf};
 use std::fs::{self, OpenOptions};
@@ -14,7 +14,7 @@ mod advanced_impl;
 use advanced_impl::*;
 
 // ============================================
-// GHOST MODE - Enable ALL features at once
+// Ghost Mode - Unified anti-forensic operations
 // ============================================
 
 pub fn handle_ghost(enable_all: bool, disable_all: bool, status: bool, verbose: bool) {
@@ -33,7 +33,7 @@ pub fn handle_ghost(enable_all: bool, disable_all: bool, status: bool, verbose: 
     }
     
     if enable_all {
-        println!("🔥 ENABLING GHOST MODE - ALL FEATURES ACTIVATED");
+        println!("🔥 Enabling Ghost Mode - All features activated");
         println!();
         
         // Memory encryption
@@ -69,53 +69,53 @@ pub fn handle_ghost(enable_all: bool, disable_all: bool, status: bool, verbose: 
         clean_all_artifacts(verbose);
         
         println!();
-        println!("✅ GHOST MODE ACTIVATED - SYSTEM IS NOW INVISIBLE");
+        println!("✅ Ghost mode activated - System is now invisible");
     }
     
     if disable_all {
-        println!("⚠️  DISABLING GHOST MODE...");
+        println!("⚠️  Disabling ghost mode...");
         println!("✅ Ghost mode disabled");
     }
 }
 
 // ============================================
-// PHANTOM MODE - Complete operation
+// Phantom Mode - Complete stealth operation
 // ============================================
 
 pub fn handle_phantom(target: PathBuf, passes: u32, self_destruct: bool, no_verify: bool, silent: bool, _paranoid: bool) {
     if !silent {
-        println!("👻 PHANTOM MODE ACTIVATED");
+        println!("👻 Phantom mode activated");
         println!("Target: {}", target.display());
         println!("Passes: {}", passes);
     }
     
     let start = Instant::now();
     
-    // 1. Wipe target
+    // Step 1: Wipe target
     if !silent { println!("\n[1/7] Wiping target..."); }
     wipe_file_impl(&target, passes, !no_verify);
     
-    // 2. Memory encryption
+    // Step 2: Memory encryption
     if !silent { println!("[2/7] Encrypting memory..."); }
     encrypt_memory_impl(false);
     
-    // 3. Timeline manipulation
+    // Step 3: Timeline manipulation
     if !silent { println!("[3/7] Manipulating timeline..."); }
     forge_all_timestamps(false);
     
-    // 4. Network cleanup
+    // Step 4: Network cleanup
     if !silent { println!("[4/7] Cleaning network traces..."); }
     clean_network_traces(false);
     
-    // 5. Process hiding
+    // Step 5: Process hiding
     if !silent { println!("[5/7] Hiding process..."); }
     hide_process_impl(false);
     
-    // 6. Artifact cleanup
+    // Step 6: Artifact cleanup
     if !silent { println!("[6/7] Cleaning artifacts..."); }
     clean_all_artifacts(false);
     
-    // 7. Self-destruct
+    // Step 7: Self-destruct (optional)
     if self_destruct {
         if !silent { println!("[7/7] Self-destructing..."); }
         self_destruct_impl();
@@ -127,13 +127,13 @@ pub fn handle_phantom(target: PathBuf, passes: u32, self_destruct: bool, no_veri
     
     if !silent {
         println!();
-        println!("✅ PHANTOM MODE COMPLETE");
+        println!("✅ Phantom mode complete");
         println!("Time: {:.2}s", elapsed.as_secs_f64());
     }
 }
 
 // ============================================
-// MEMORY OPERATIONS
+// Memory Operations
 // ============================================
 
 pub fn handle_memory(encrypt: bool, hide_process: bool, anti_dump: bool, wipe_on_exit: bool, obfuscate: bool, all: bool, verbose: bool) {

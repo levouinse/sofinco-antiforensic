@@ -2,10 +2,13 @@
 name = "sofinco-antiforensic"
 version = "7.0.0"
 edition = "2021"
-authors = ["sofinco"]
-description = "SOFINCO v7.0.0 ULTIMATE COMPLETE - Full Anti-Forensic Implementation"
+authors = ["levouinse <sofinco@proton.me>"]
+description = "Advanced anti-forensic toolkit with memory encryption and stealth capabilities"
 license = "GPL-3.0"
 repository = "https://github.com/levouinse/sofinco-antiforensic"
+homepage = "https://github.com/levouinse/sofinco-antiforensic"
+keywords = ["security", "forensics", "privacy", "encryption"]
+categories = ["command-line-utilities", "cryptography"]
 
 [[bin]]
 name = "sofinco"

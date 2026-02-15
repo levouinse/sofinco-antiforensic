@@ -8,31 +8,45 @@
  ███████║╚██████╔╝██║     ██║██║ ╚████║╚██████╗╚██████╔╝
  ╚══════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ 
                                                           
-    ANTI-FORENSIC TOOLKIT v4.0.0 "GHOST MODE"
+    Anti-Forensic Toolkit v7.0
 ```
 
-**Author:** sofinco  
+**Author:** levouinse  
 **Repository:** https://github.com/levouinse/sofinco-antiforensic  
 **License:** GPL-3.0  
-**Version:** 4.0.0 (Production Ready)  
-**Status:** ✅ PRODUCTION READY | ✅ ANTI-FORENSIC VERIFIED
+**Version:** 7.0.0  
 
 ---
 
-## 🎯 Overview
+## Overview
 
-SOFINCO is the **most advanced anti-forensic toolkit** ever created, combining 5 specialized tools into one unified, production-grade system with **kernel-mode operations**, **memory encryption**, and **complete stealth capabilities**.
+SOFINCO is an advanced anti-forensic toolkit that combines multiple specialized tools into a unified system. Built with Rust for performance and memory safety, it provides comprehensive capabilities for security research and authorized testing.
 
-### What Makes This Tool TRULY Anti-Forensic?
+### Core Features
 
-✅ **Evades ALL major forensic tools** (Volatility, EnCase, FTK, Autopsy, etc.)  
-✅ **Kernel-mode operations** for deep system access  
-✅ **Memory encryption** to prevent RAM forensics  
-✅ **Timeline manipulation** to corrupt forensic timelines  
-✅ **Network obfuscation** to hide network traces  
-✅ **Quantum-resistant wiping** (100-pass algorithm)  
-✅ **Live detection** with automatic countermeasures  
-✅ **Post-quantum cryptography** for future-proof security  
+- **Memory Protection** - Real-time encryption and anti-dump mechanisms
+- **Secure Deletion** - Multiple wiping algorithms (DoD, Gutmann, custom patterns)
+- **Timeline Manipulation** - MACB timestamp modification and journal corruption
+- **Network Obfuscation** - Traffic morphing and protocol tunneling
+- **Stealth Operations** - Process hiding and rootkit capabilities
+- **Live Detection** - Forensic tool monitoring with automatic countermeasures
+- **USB Kill-Switch** - Hardware-based emergency shutdown (3 implementations)  
+
+---
+
+## ⚠️ CRITICAL DISCLAIMER
+
+**FOR AUTHORIZED USE ONLY**
+
+This toolkit includes powerful capabilities that can:
+- Permanently destroy data
+- Manipulate system timestamps
+- Hide processes and files
+- Encrypt memory in real-time
+- Evade forensic analysis
+
+**Legal Use Cases:**
+- ✅ Personal privacy protection
 
 ---
 
@@ -227,17 +241,15 @@ xcode-select --install
 git clone https://github.com/levouinse/sofinco-antiforensic.git
 cd sofinco-antiforensic
 
-# Build (choose version)
-cargo build --release                    # v2.0 (stable)
-# OR
-cargo build --release --manifest-path Cargo_v3.5.toml  # v3.5 (advanced)
+# Build
+cargo build --release
 
 # Install system-wide
-sudo cp target/release/sofinco-antiforensic /usr/local/bin/
-sudo chmod +x /usr/local/bin/sofinco-antiforensic
+sudo cp target/release/sofinco /usr/local/bin/
+sudo chmod +x /usr/local/bin/sofinco
 
 # Verify installation
-sofinco-antiforensic status
+sofinco status
 ```
 
 ### Quick Start Script
@@ -245,9 +257,6 @@ sofinco-antiforensic status
 ```bash
 # Use automated build script
 ./build.sh
-
-# Or automated deployment
-sudo ./deploy-vps.sh
 ```
 
 ---
@@ -258,48 +267,48 @@ sudo ./deploy-vps.sh
 
 ```bash
 # Show status
-sofinco-antiforensic status
+sofinco status
 
 # File wiping (DoD 3-pass)
-sofinco-antiforensic wipe --method dod file.txt
+sofinco wipe --method dod file.txt
 
 # File wiping (Gutmann 35-pass)
-sofinco-antiforensic wipe --method gutmann sensitive.doc
+sofinco wipe --method gutmann sensitive.doc
 
 # Recursive directory wipe
-sofinco-antiforensic wipe --method gutmann -R /sensitive/
+sofinco wipe --method gutmann -R /sensitive/
 
 # USB monitoring
-sofinco-antiforensic usb-guard --list
-sudo sofinco-antiforensic usb-guard --start
+sofinco usb-guard --list
+sudo sofinco usb-guard --start
 
 # Forensic cleanup (all)
-sofinco-antiforensic clean --all
+sofinco clean --all
 ```
 
-### Advanced Commands (v3.0+)
+### Advanced Commands
 
 ```bash
-# Quantum-resistant wipe (v3.5+)
-sofinco-antiforensic wipe --method quantum --verify file.txt
+# Quantum-resistant wipe
+sofinco wipe --method quantum --verify file.txt
 
 # With AI detection
-sofinco-antiforensic wipe --ai-detect --method gutmann /sensitive/
+sofinco wipe --ai-detect --method gutmann /sensitive/
 
 # Browser cleanup
-sofinco-antiforensic clean --browser --thumbnails --clipboard
+sofinco clean --browser --thumbnails --clipboard
 
 # Network cleanup
-sofinco-antiforensic network --dns --arp
+sofinco network --dns --arp
 
 # Process management
-sofinco-antiforensic process --kill --detect-forensic
+sofinco process --kill --detect-forensic
 
 # Verbose mode
-sofinco-antiforensic -v wipe --method gutmann file.txt
+sofinco -v wipe --method gutmann file.txt
 
 # Stealth mode
-sofinco-antiforensic -s wipe --method dod file.txt
+sofinco -s wipe --method dod file.txt
 ```
 
 ### Ultimate Commands (v4.0 - Ghost Mode)
@@ -465,46 +474,46 @@ sudo sofinco wipe --method extreme --passes 100 file.txt
 ### 1. Personal Privacy Protection
 ```bash
 # Secure delete personal files
-sofinco-antiforensic wipe --method gutmann ~/Documents/personal/
+sofinco wipe --method gutmann ~/Documents/personal/
 
 # Clean browser history
-sofinco-antiforensic clean --browser --thumbnails
+sofinco clean --browser --thumbnails
 
 # Clear network traces
-sofinco-antiforensic network --dns --arp
+sofinco network --dns --arp
 ```
 
 ### 2. Incident Response Testing
 ```bash
 # Test forensic tool detection
-sofinco-antiforensic live-detect --monitor
+sofinco live-detect --monitor
 
 # Test memory acquisition
-sudo sofinco-antiforensic memory --encrypt --anti-dump
+sudo sofinco memory --encrypt --anti-dump
 
 # Test timeline analysis
-sudo sofinco-antiforensic timeline --forge-macb
+sudo sofinco timeline --forge-macb
 ```
 
 ### 3. Security Research
 ```bash
 # Benchmark wipe methods
-sofinco-antiforensic benchmark --all-methods
+sofinco benchmark --all-methods
 
 # Test anti-analysis
-sofinco-antiforensic anti-analysis --anti-debug --anti-vm
+sofinco anti-analysis --anti-debug --anti-vm
 
 # Analyze threats
-sofinco-antiforensic status --threats
+sofinco status --threats
 ```
 
 ### 4. GDPR Compliance
 ```bash
 # Right to be forgotten
-sofinco-antiforensic wipe --method gutmann --verify user-data/
+sofinco wipe --method gutmann --verify user-data/
 
 # Secure data disposal
-sofinco-antiforensic wipe --method dod -R /old-backups/
+sofinco wipe --method dod -R /old-backups/
 ```
 
 ### 5. Complete System Cleanup
@@ -513,19 +522,19 @@ sofinco-antiforensic wipe --method dod -R /old-backups/
 # Complete cleanup script
 
 # Wipe sensitive files
-sofinco-antiforensic wipe --method quantum ~/sensitive/
+sofinco wipe --method quantum ~/sensitive/
 
 # Clean all traces
-sofinco-antiforensic clean --all
+sofinco clean --all
 
 # Clean network
-sofinco-antiforensic network --clean
+sofinco network --clean
 
 # Kill forensic tools
-sofinco-antiforensic process --kill
+sofinco process --kill
 
 # Verify
-sofinco-antiforensic status --health
+sofinco status --health
 ```
 
 ---
@@ -568,7 +577,7 @@ memory_protection = true
 
 **Permission Denied:**
 ```bash
-sudo sofinco-antiforensic wipe /protected/file
+sudo sofinco wipe /protected/file
 ```
 
 **Build Errors:**
@@ -614,7 +623,7 @@ GPL-3.0 - See [LICENSE](LICENSE) file
 
 ### ✅ PRODUCTION READY
 
-SOFINCO Anti-Forensic Toolkit v4.0.0 is:
+SOFINCO Anti-Forensic Toolkit v7.0.0 is:
 
 ✅ **Production-ready** - Tested and stable  
 ✅ **Anti-forensic verified** - Evades all major tools  
@@ -648,7 +657,7 @@ This is an **extremely powerful** tool. Use responsibly and legally.
 
 ---
 
-**SOFINCO v4.0.0 "Ghost Mode" - The Ultimate Anti-Forensic Toolkit** 🛡️
+**SOFINCO v7.0.0 "Ghost Mode" - The Ultimate Anti-Forensic Toolkit** 🛡️
 
 ## Platform Support
 
@@ -735,12 +744,12 @@ cd sofinco-antiforensic
 cargo build --release
 ```
 
-The compiled binary will be at `target/release/sofinco-antiforensic`
+The compiled binary will be at `target/release/sofinco`
 
 ### Install System-wide
 
 ```bash
-sudo cp target/release/sofinco-antiforensic /usr/local/bin/
+sudo cp target/release/sofinco /usr/local/bin/
 sudo chmod +x /usr/local/bin/sofinco-antiforensic
 ```
 
@@ -750,27 +759,27 @@ sudo chmod +x /usr/local/bin/sofinco-antiforensic
 
 **Basic wipe (random data):**
 ```bash
-sofinco-antiforensic wipe file.txt
+sofinco wipe file.txt
 ```
 
 **Gutmann method (35 passes):**
 ```bash
-sofinco-antiforensic wipe --gutmann sensitive.doc
+sofinco wipe --gutmann sensitive.doc
 ```
 
 **Recursive directory wipe:**
 ```bash
-sofinco-antiforensic wipe -R /path/to/directory
+sofinco wipe -R /path/to/directory
 ```
 
 **Custom rounds:**
 ```bash
-sofinco-antiforensic wipe --rounds 10 file.txt
+sofinco wipe --rounds 10 file.txt
 ```
 
 **Multiple targets:**
 ```bash
-sofinco-antiforensic wipe file1.txt file2.doc /path/to/dir -R
+sofinco wipe file1.txt file2.doc /path/to/dir -R
 ```
 
 ### USB Guard
@@ -799,70 +808,70 @@ sudo sofinco-antiforensic usb-guard --stop
 
 **Disable prefetch:**
 ```bash
-sofinco-antiforensic clean --prefetch
+sofinco clean --prefetch
 ```
 
 **Clear event logs:**
 ```bash
-sofinco-antiforensic clean --eventlog
+sofinco clean --eventlog
 ```
 
 **Disable USN journal:**
 ```bash
-sofinco-antiforensic clean --usn
+sofinco clean --usn
 ```
 
 **Unload Sysmon:**
 ```bash
-sofinco-antiforensic clean --sysmon
+sofinco clean --sysmon
 ```
 
 **Clear ShellBags:**
 ```bash
-sofinco-antiforensic clean --shellbags
+sofinco clean --shellbags
 ```
 
 **Clear Recent Items:**
 ```bash
-sofinco-antiforensic clean --recent
+sofinco clean --recent
 ```
 
 **Clear ShimCache:**
 ```bash
-sofinco-antiforensic clean --shimcache
+sofinco clean --shimcache
 ```
 
 **Disable timestamp tracking:**
 ```bash
-sofinco-antiforensic clean --timestamps
+sofinco clean --timestamps
 ```
 
 **Clean all artifacts:**
 ```bash
-sofinco-antiforensic clean --all
+sofinco clean --all
 ```
 
 ### Linux/macOS Cleanup
 
 **Clear system logs:**
 ```bash
-sudo sofinco-antiforensic clean --eventlog
+sudo sofinco clean --eventlog
 ```
 
 **Clear recent files:**
 ```bash
-sofinco-antiforensic clean --recent
+sofinco clean --recent
 ```
 
 **Disable timestamp tracking:**
 ```bash
-sofinco-antiforensic clean --timestamps
+sofinco clean --timestamps
 ```
 
 ### System Status
 
 ```bash
-sofinco-antiforensic status
+sofinco status
 ```
 
 ## Integrated Tools
@@ -982,7 +991,7 @@ Tested on Intel i7-10700K, NVMe SSD:
 
 ### Permission Denied
 ```bash
-sudo sofinco-antiforensic wipe /protected/file
+sudo sofinco wipe /protected/file
 ```
 
 ### USB Guard Not Working
@@ -1043,7 +1052,7 @@ The authors are not responsible for misuse or damage caused by this software. Us
 - **silk-guardian**: Nate Brune (kernel module implementation)
 - **usbdeath**: Trepet (bash/udev implementation)
 - **usbkill**: Hephaestos (Python implementation)
-- **Integration**: sofinco (unified toolkit)
+- **Integration & Development**: levouinse (unified toolkit)
 
 ## Support
 
@@ -1053,6 +1062,16 @@ The authors are not responsible for misuse or damage caused by this software. Us
 
 ## Changelog
 
+### v7.0.0 (2026-02-15)
+- ✨ Complete refactor with improved architecture
+- ✨ Enhanced memory protection and encryption
+- ✨ Advanced timeline manipulation capabilities
+- ✨ Network obfuscation and stealth features
+- ✨ Live forensic tool detection
+- ✨ Improved cross-platform support
+- ✨ Better error handling and logging
+- ✨ Comprehensive documentation updates
+
 ### v2.0.0 (2026-01-23)
 - ✨ Unified toolkit combining 5 specialized tools
 - ✨ Rust implementation for performance and safety
@@ -1061,7 +1080,6 @@ The authors are not responsible for misuse or damage caused by this software. Us
 - ✨ USB monitoring integration
 - ✨ Windows forensic cleanup
 - ✨ Production-grade error handling
-- ✨ Comprehensive documentation
 
 ---
 

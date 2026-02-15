@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # SOFINCO Anti-Forensic Toolkit - Build Script
-# Author: sofinco
-# Version: 2.0.0
+# Author: levouinse
+# Version: 7.0.0
 
 set -e
 
 echo "╔═══════════════════════════════════════════════════════════╗"
-echo "║         SOFINCO ANTI-FORENSIC TOOLKIT v2.0.0             ║"
+echo "║         SOFINCO ANTI-FORENSIC TOOLKIT v7.0.0             ║"
 echo "╚═══════════════════════════════════════════════════════════╝"
 echo ""
 
@@ -28,13 +28,13 @@ cargo build --release
 if [ $? -eq 0 ]; then
     echo "✓ Build successful!"
     echo ""
-    echo "Binary location: target/release/sofinco-antiforensic"
+    echo "Binary location: target/release/sofinco"
     echo ""
     echo "To install system-wide:"
-    echo "  sudo cp target/release/sofinco-antiforensic /usr/local/bin/"
+    echo "  sudo cp target/release/sofinco /usr/local/bin/"
     echo ""
     echo "To run:"
-    echo "  ./target/release/sofinco-antiforensic --help"
+    echo "  ./target/release/sofinco --help"
 else
     echo "✗ Build failed"
     exit 1

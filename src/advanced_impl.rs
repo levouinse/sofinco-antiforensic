@@ -1,5 +1,8 @@
 // Advanced Implementation - Real Anti-Forensic Techniques
-// Implementasi NYATA untuk semua fitur
+// Core implementations for memory, disk, and system operations
+//
+// This module contains the actual implementations of anti-forensic techniques.
+// Each function is designed to work on specific platforms and handle edge cases.
 
 #![allow(dead_code)]
 
@@ -11,14 +14,14 @@ use std::time::UNIX_EPOCH;
 use rand::{RngCore, thread_rng, Rng};
 
 // ============================================
-// ADVANCED MEMORY OPERATIONS
+// Advanced Memory Operations
 // ============================================
 
 pub fn encrypt_memory_real() -> io::Result<()> {
-    // Real memory encryption using mlock and encryption
+    // Lock memory pages to prevent swapping to disk
+    // This is crucial for preventing memory forensics on swap files
     #[cfg(target_os = "linux")]
     {
-        
         extern "C" {
             fn mlockall(flags: i32) -> i32;
             fn munlockall() -> i32;
@@ -29,11 +32,11 @@ pub fn encrypt_memory_real() -> io::Result<()> {
         }
     }
     
-    // Allocate encrypted memory region
-    let mut sensitive_data = vec![0u8; 1024 * 1024]; // 1MB
+    // Allocate a buffer for sensitive data
+    let mut sensitive_data = vec![0u8; 1024 * 1024]; // 1MB buffer
     thread_rng().fill_bytes(&mut sensitive_data);
     
-    // XOR encryption (simple but effective)
+    // Simple XOR encryption - effective for anti-forensics without heavy crypto overhead
     let key: u8 = thread_rng().gen();
     for byte in sensitive_data.iter_mut() {
         *byte ^= key;
@@ -44,18 +47,20 @@ pub fn encrypt_memory_real() -> io::Result<()> {
 
 #[allow(dead_code)]
 pub fn wipe_memory_on_exit() {
-    // Overwrite stack and heap
+    // Allocate and overwrite a large chunk of memory before exit
+    // This helps prevent recovery of sensitive data from RAM
     let mut dummy = vec![0u8; 10 * 1024 * 1024]; // 10MB
     thread_rng().fill_bytes(&mut dummy);
     
-    // Force write to prevent optimization
+    // black_box prevents the compiler from optimizing this away
     std::hint::black_box(&dummy);
 }
 
 pub fn anti_dump_protection() -> io::Result<()> {
     #[cfg(target_os = "linux")]
     {
-        // Set PR_SET_DUMPABLE to 0
+        // Disable core dumps by setting coredump_filter to 0
+        // This prevents memory dumps via ptrace and similar tools
         use std::fs::File;
         use std::io::Write;
         
@@ -65,7 +70,7 @@ pub fn anti_dump_protection() -> io::Result<()> {
     
     #[cfg(target_os = "windows")]
     {
-        // Prevent debugging
+        // Check for debugger presence and exit if detected
         unsafe {
             use std::ptr;
             #[link(name = "kernel32")]
@@ -83,14 +88,14 @@ pub fn anti_dump_protection() -> io::Result<()> {
 }
 
 // ============================================
-// ADVANCED DISK FORENSICS EVASION
+// Advanced Disk Forensics Evasion
 // ============================================
 
 pub fn wipe_slack_space(path: &Path) -> io::Result<()> {
     let metadata = fs::metadata(path)?;
     let file_size = metadata.len();
     
-    // Get block size (typically 4096)
+    // Get block size (typically 4096 bytes)
     let block_size = 4096u64;
     let blocks_used = (file_size + block_size - 1) / block_size;
     let allocated_size = blocks_used * block_size;

@@ -1,5 +1,5 @@
-// SOFINCO v7.0.0 "ULTIMATE COMPLETE" - All Features Implemented
-// Implementasi LENGKAP semua fitur yang disebutkan di README
+// SOFINCO Anti-Forensic Toolkit v7.0
+// Main entry point with comprehensive CLI interface
 
 use clap::{Parser, Subcommand};
 use std::path::PathBuf;
@@ -11,7 +11,7 @@ use phantom::*;
 #[derive(Parser)]
 #[command(name = "sofinco")]
 #[command(version = "7.0.0")]
-#[command(about = "SOFINCO v7.0.0 ULTIMATE - Complete Anti-Forensic Implementation", long_about = None)]
+#[command(about = "Advanced anti-forensic toolkit for security research", long_about = None)]
 struct Cli {
     #[arg(short, long, global = true)]
     verbose: bool,
@@ -25,7 +25,7 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
-    /// GHOST MODE - Enable ALL anti-forensic features at once
+    /// Ghost mode - Enable all anti-forensic features simultaneously
     Ghost {
         /// Enable all features
         #[arg(long)]
@@ -40,7 +40,7 @@ enum Commands {
         status: bool,
     },
     
-    /// PHANTOM MODE - Complete anti-forensic operation
+    /// Phantom mode - Complete anti-forensic operation with self-destruct
     Phantom {
         #[arg(short, long)]
         target: PathBuf,
